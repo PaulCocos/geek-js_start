@@ -1,0 +1,42 @@
+﻿<meta charset="utf-8">
+<script>
+alert("Игра в загадки");
+var n = 0;
+var total = 0;
+var q1 = "Золотая кошка лезет к нам в окошко";
+var a1 = "солнце";
+var q2 = "У него огромный рот, он зовется ...";
+var a2 = "бегемот";
+var q3 = "Что за зверь, скажите, братцы, может сам в себя забраться?";
+var a3 = "норка";
+// загадка 1
+var a = prompt("1. " + q1);
+total = total + 1;
+if (a == a1){ 
+	alert("Верно!");
+	n = n +1;
+} else {
+	alert("Неверно!");
+}
+// загадка 2
+var a = prompt("1. " + q2);
+total = total + 1;
+if (a == a2){ 
+	alert("Верно!");
+	n = n +1;
+} else {
+	alert("Неверно!");
+}
+// загадка 3
+var a = prompt("1. " + q3);
+total = total + 1;
+if (a == a3){ 
+	alert("Верно!");
+	n = n +1;
+} else {
+	alert("Неверно!");
+}
+alert("Всего разгадано: " + n + " из " + total);
+</script>
+
+
