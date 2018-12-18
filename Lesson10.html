@@ -1,0 +1,16 @@
+﻿<meta charset="utf-8">
+<script>
+alert("Расчет суммы вклада с процентами");
+// задаем исходные данные
+var amount = prompt("Введите исходную сумму вклада: ")
+var percent = prompt("Введите процент годовых: ")
+var years = prompt("Введите срок вклада: ")
+// var amount = 100000; // исходная сумма
+// var percent = 10; // процент годовых
+// var years = 10; // число лет
+
+for (year = 1; year <= years; year++){
+	amount = amount*(1 + percent/100);
+}
+alert("Через " + years + " лет ваш вклад составит " + Math.floor(amount));
+</script>
