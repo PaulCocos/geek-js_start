@@ -1,0 +1,45 @@
+﻿<meta charset="utf-8">
+<script>
+alert("Заготовка для блэкджека");
+
+function getRandomInt(min, max) {
+	// функция выдает случайное число от min до max
+	return Math.floor(Math.random() * (max - min +1)) + min;
+}
+function getCard(){
+	// функция выдает случайную карту
+	var cards = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+	return cards[getRandomInt(0, cards.length - 1)];
+}
+// вычисление суммы карт
+function getSum(arr){
+	var sum = 0;
+	var card = '';
+	var ascount = 0;
+	for (var i = 0; i < arr.length; i++){
+		card = arr[i];
+		if (card == 'J' || card == 'Q' || card == 'K'){
+			sum = sum + 10;
+		} else if (card == 'A'){
+			sum = sum + 11;
+			ascount++;
+		} else {
+			sum = sum + parseInt(card);
+		}
+	}
+	// если перебор, проверяем, были ли среди карт тузы, и уменьшаем сумму на 10 пока не кончатся тузы или не выйдем из перебора
+	if (sum > 21) {
+		while ((ascount > 0) && (sum > 21)) {
+			sum = sum - 10;
+			ascount--;
+		}
+	}
+	return sum;
+}
+
+// раздача карт
+var dealer = [getCard()];
+var player = [getCard(), getCard()];
+alert('Дилер: ' + dealer.join(' ') + ' Игрок: ' + player.join(' ') + '. Сумма карт: ' + getSum(player));
+// alert('Текущая сумма карт у игрока: ' + getSum(player));
+</script>
