@@ -1,0 +1,70 @@
+﻿<meta charset="utf-8">
+<script>
+alert("Заготовка для блэкджека-2");
+
+function getRandomInt(min, max) {
+	// функция выдает случайное число от min до max
+	return Math.floor(Math.random() * (max - min +1)) + min;
+}
+function getCard(){
+	// функция выдает случайную карту
+	var cards = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+	return cards[getRandomInt(0, cards.length - 1)];
+}
+// вычисление суммы карт
+function getSum(arr){
+	var sum = 0;
+	var card = '';
+	var ascount = 0;
+	for (var i = 0; i < arr.length; i++){
+		card = arr[i];
+		if (card == 'J' || card == 'Q' || card == 'K'){
+			sum = sum + 10;
+		} else if (card == 'A'){
+			sum = sum + 11;
+			ascount++;
+		} else {
+			sum = sum + parseInt(card);
+		}
+	}
+	// если перебор, проверяем, были ли среди карт тузы, и уменьшаем сумму на 10 пока не кончатся тузы или не выйдем из перебора
+	if (sum > 21) {
+		while ((ascount > 0) && (sum > 21)) {
+			sum = sum - 10;
+			ascount--;
+		}
+	}
+	return sum;
+}
+
+function getStatus(){
+	return 'Дилер: ' + dealer.join(' ') + ' Игрок: ' + player.join(' ' + '.');
+}
+
+// раздача карт
+var dealer = [getCard()];
+var player = [getCard(), getCard()];
+var sumplayer = 0;
+var flag = 0;
+
+var answer = '';
+do {
+	answer = prompt(getStatus() + ' Хотите еще карту? 1-да, иначе нет');
+	// сдаем еще карту либо прекращаем игру
+
+	if (answer == '1') {
+		player.push(getCard());
+	}
+	sumplayer = getSum(player);
+	if (sumplayer == 21){
+		alert(getStatus() + ' Блэкджек! Вы выиграли!')
+		flag = 1;
+	} else if (sumplayer > 21) {
+		alert(getStatus() + ' Перебор! Вы проиграли!')
+		flag = 1;
+	} else {
+		alert(getStatus());
+	}
+} while((answer == '1') && (flag != 1));
+
+</script>
